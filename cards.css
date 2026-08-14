@@ -1,0 +1,252 @@
+/* ── Planner grid ── */
+.planner-grid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ── Add Card ── */
+.add-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.add-card .card-title { margin-bottom: 0; }
+
+/* ── Category grid ── */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.cat-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 4px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--trans);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.cat-btn .cat-emoji { font-size: 1.1rem; line-height: 1; }
+.cat-btn:hover { border-color: var(--border-hi); color: var(--text-base); }
+.cat-btn.selected {
+  border-color: currentColor;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
+}
+
+/* ── Templates ── */
+.templates-wrap { display: flex; flex-direction: column; gap: 6px; }
+.tpl-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.65rem 0.9rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--trans);
+  text-align: left;
+  width: 100%;
+}
+.tpl-btn:hover { border-color: var(--border-hi); background: var(--surface-3); }
+.tpl-emoji { font-size: 1rem; flex-shrink: 0; }
+.tpl-info { display: flex; flex-direction: column; gap: 1px; }
+.tpl-name {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-hi);
+}
+.tpl-desc { font-size: 0.73rem; color: var(--text-muted); }
+
+/* ── List Card ── */
+.list-card { display: flex; flex-direction: column; gap: 0; }
+.list-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+.list-card-header .card-title { margin-bottom: 0; }
+
+/* ── Empty state ── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  gap: 12px;
+  text-align: center;
+}
+.empty-icon { font-size: 2.5rem; filter: grayscale(0.5); opacity: 0.5; }
+.empty-state p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+
+/* ── Activity items ── */
+.activities-list { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.75rem 0.9rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  animation: popIn 0.2s ease;
+  transition: border-color var(--trans);
+}
+.activity-item:hover { border-color: var(--border-hi); }
+
+.act-color-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.act-emoji { font-size: 1.05rem; flex-shrink: 0; }
+.act-info { flex: 1; min-width: 0; }
+.act-name {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-hi);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.act-meta { font-size: 0.74rem; color: var(--text-muted); margin-top: 2px; }
+.act-duration {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-base);
+  flex-shrink: 0;
+}
+.act-del {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-dim);
+  border-radius: var(--radius-sm);
+  transition: all var(--trans);
+  flex-shrink: 0;
+}
+.act-del:hover { color: var(--rose); background: rgba(244,63,94,0.1); }
+.act-del svg { width: 14px; height: 14px; }
+
+/* ── Time Leak ── */
+.leak-box {
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  background: rgba(0,212,255,0.06);
+  border: 1px solid rgba(0,212,255,0.2);
+  border-radius: var(--radius-sm);
+  animation: fadeIn 0.3s ease;
+}
+.leak-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--cyan);
+  margin-bottom: 5px;
+}
+.leak-title svg { width: 16px; height: 16px; }
+.leak-box p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+
+/* ── Breakdown ── */
+.breakdown-box {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.breakdown-title {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-hi);
+  margin-bottom: 0.75rem;
+}
+.breakdown-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 7px;
+}
+.bd-label {
+  font-size: 0.78rem;
+  color: var(--text-base);
+  width: 110px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bd-track {
+  flex: 1;
+  height: 5px;
+  background: var(--surface-3);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.bd-fill {
+  height: 100%;
+  border-radius: 100px;
+  transition: width 0.8s cubic-bezier(.4,0,.2,1);
+}
+.bd-pct {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  width: 36px;
+  text-align: right;
+}
+
+/* ── What If card ── */
+.whatif-card { margin-top: 1.25rem; }
+.whatif-head { margin-bottom: 1rem; }
+.whatif-head .card-title { margin-bottom: 4px; }
+.whatif-sub { font-size: 0.84rem; color: var(--text-muted); }
+.whatif-controls {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+.whatif-result {
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  background: rgba(79,70,229,0.08);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--radius-sm);
+  animation: fadeIn 0.3s ease;
+}
+.wi-line {
+  font-size: 0.88rem;
+  color: var(--text-base);
+  margin-bottom: 5px;
+  line-height: 1.5;
+}
+.wi-line strong { color: var(--text-hi); }
+.wi-line.warn strong { color: var(--amber); }
+.wi-line.good strong { color: var(--emerald); }
