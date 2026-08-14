@@ -1,0 +1,175 @@
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-bottom: 1.5rem;
+  padding: 2rem 2rem 2rem;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(79,70,229,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Clock ── */
+.hero-clock {
+  position: relative;
+  flex-shrink: 0;
+  width: 200px;
+  height: 200px;
+}
+.clock-svg {
+  width: 200px;
+  height: 200px;
+  filter: drop-shadow(0 0 18px rgba(79,70,229,0.3));
+}
+.clock-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.clock-used-wrap,
+.clock-free-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+.clock-used-val {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-hi);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.clock-used-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--indigo-hi);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.clock-divider {
+  width: 28px;
+  height: 1px;
+  background: var(--border);
+  margin: 5px 0;
+}
+.clock-free-val {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cyan);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.clock-free-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ── Hero right ── */
+.hero-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.stat-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: border-color var(--trans);
+}
+.stat-card.highlight {
+  border-color: rgba(79,70,229,0.4);
+  background: rgba(79,70,229,0.08);
+}
+.stat-val {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text-hi);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.stat-card.highlight .stat-val { color: var(--lavender); }
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ── Productivity bar ── */
+.prod-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.prod-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.prod-bar-title {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.prod-bar-pct {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--lavender);
+}
+.prod-bar-track {
+  height: 6px;
+  background: var(--surface-3);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.prod-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--indigo), var(--cyan));
+  border-radius: 100px;
+  width: 0%;
+  transition: width 0.8s cubic-bezier(.4,0,.2,1);
+}
+.prod-message {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
