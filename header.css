@@ -1,0 +1,97 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  background: rgba(8,12,24,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 8px rgba(79,70,229,0.6));
+}
+.logo-icon svg { width: 36px; height: 36px; }
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-hi);
+  letter-spacing: -0.03em;
+}
+.logo-accent {
+  background: linear-gradient(90deg, var(--indigo-hi), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Nav */
+.header-nav {
+  display: flex;
+  gap: 4px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 4px;
+  margin-left: auto;
+}
+.nav-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 0.45rem 1.1rem;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all var(--trans);
+}
+.nav-btn:hover { color: var(--text-base); }
+.nav-btn.active {
+  background: var(--indigo);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(79,70,229,0.4);
+}
+
+/* Save button */
+.save-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0.5rem 1.1rem;
+  background: transparent;
+  border: 1px solid var(--border-hi);
+  border-radius: 100px;
+  color: var(--lavender);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--trans);
+  flex-shrink: 0;
+}
+.save-btn svg { width: 15px; height: 15px; }
+.save-btn:hover {
+  background: rgba(79,70,229,0.15);
+  border-color: var(--indigo);
+  box-shadow: var(--glow-indigo);
+}
