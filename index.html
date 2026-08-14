@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>24Flow — Plan Your Day</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/cards.css" />
+  <link rel="stylesheet" href="css/timeline.css" />
+  <link rel="stylesheet" href="css/views.css" />
+</head>
+<body>
+<div class="app">
+
+  <!-- ── HEADER ── -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="18" r="15" stroke="url(#hg)" stroke-width="2.2"/>
+          <path d="M18 9 L18 18 L25 18" stroke="#00D4FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="hg" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#4F46E5"/>
+              <stop offset="100%" stop-color="#00D4FF"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <span class="logo-text">24<span class="logo-accent">Flow</span></span>
+    </div>
+
+    <nav class="header-nav">
+      <button class="nav-btn active" data-view="planner">Planner</button>
+      <button class="nav-btn" data-view="compare">Compare</button>
+      <button class="nav-btn" data-view="weekly">Weekly</button>
+    </nav>
+
+    <button class="save-btn" id="save-btn">
+      <svg viewBox="0 0 18 18" fill="none"><path d="M14 16H4a1 1 0 01-1-1V3a1 1 0 011-1h8l3 3v10a1 1 0 01-1 1z" stroke="currentColor" stroke-width="1.5"/><path d="M6 16v-5h6v5M6 2v4h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      Save Day
+    </button>
+  </header>
+
+  <!-- ── MAIN ── -->
+  <main class="main">
+
+    <!-- ══════════════ PLANNER VIEW ══════════════ -->
+    <div id="view-planner" class="view active">
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-clock">
+          <svg class="clock-svg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="120" cy="120" r="104" fill="none" stroke="var(--surface-2)" stroke-width="20"/>
+            <circle id="clock-arc" cx="120" cy="120" r="104" fill="none"
+              stroke="url(#cg)" stroke-width="20" stroke-linecap="round"
+              stroke-dasharray="653.45" stroke-dashoffset="653.45"
+              transform="rotate(-90 120 120)"/>
+            <g id="clock-ticks"></g>
+            <defs>
+              <linearGradient id="cg" x1="0" y1="0" x2="240" y2="240" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#4F46E5"/>
+                <stop offset="50%" stop-color="#00D4FF"/>
+                <stop offset="100%" stop-color="#F59E0B"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="clock-center">
+            <div class="clock-used-wrap">
+              <span class="clock-used-val" id="hero-used">0h 0m</span>
+              <span class="clock-used-label">USED</span>
+            </div>
+            <div class="clock-divider"></div>
+            <div class="clock-free-wrap">
+              <span class="clock-free-val" id="hero-remaining">24h 0m</span>
+              <span class="clock-free-label">FREE</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="stat-grid">
+            <div class="stat-card">
+              <span class="stat-val" id="stat-count">0</span>
+              <span class="stat-label">Activities</span>
+            </div>
+            <div class="stat-card highlight">
+              <span class="stat-val" id="stat-score">—</span>
+              <span class="stat-label">Score</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-val" id="stat-top">—</span>
+              <span class="stat-label">Top Category</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-val" id="stat-pct">0%</span>
+              <span class="stat-label">Day Planned</span>
+            </div>
+          </div>
+
+          <div class="prod-bar-wrap" id="prod-bar-wrap">
+            <div class="prod-bar-header">
+              <span class="prod-bar-title">Productivity Score</span>
+              <span class="prod-bar-pct" id="prod-pct">—</span>
+            </div>
+            <div class="prod-bar-track">
+              <div class="prod-bar-fill" id="prod-bar"></div>
+            </div>
+            <span class="prod-message" id="prod-msg"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Over-budget banner -->
+      <div class="over-banner" id="over-banner" style="display:none">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M10 2.5L18.66 17.5H1.34L10 2.5z" stroke="#F59E0B" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 8.5v4M10 14.5v.5" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div>
+          <strong>Over Budget!</strong>
+          <span id="over-msg">You've planned more than 24 hours.</span>
+        </div>
+      </div>
+
+      <!-- Two-col grid -->
+      <div class="planner-grid">
+
+        <!-- Add Activity Card -->
+        <div class="card add-card">
+          <h2 class="card-title">Add Activity</h2>
+
+          <div class="field">
+            <label class="field-label">Activity Name</label>
+            <div class="input-icon-wrap">
+              <span class="input-emoji" id="form-emoji">📌</span>
+              <input class="text-input" type="text" id="inp-name" placeholder="e.g. Deep Work, Morning Run…" maxlength="30" />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label class="field-label">Hours</label>
+              <input class="num-input" type="number" id="inp-hours" min="0" max="24" value="1" />
+            </div>
+            <div class="field">
+              <label class="field-label">Minutes</label>
+              <input class="num-input" type="number" id="inp-mins" min="0" max="55" step="5" value="0" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Category</label>
+            <div class="cat-grid" id="cat-grid"></div>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Start Time <span class="field-optional">(optional)</span></label>
+            <input class="text-input time-input" type="time" id="inp-time" value="08:00" />
+          </div>
+
+          <button class="btn-primary" id="add-btn">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Add Activity
+          </button>
+
+          <div class="section-divider">Quick Templates</div>
+          <div class="templates-wrap" id="templates-wrap"></div>
+        </div>
+
+        <!-- Activities list card -->
+        <div class="card list-card">
+          <div class="list-card-header">
+            <h2 class="card-title">Your Day</h2>
+            <button class="btn-ghost" id="clear-btn">Clear all</button>
+          </div>
+
+          <div class="activities-list" id="activities-list">
+            <div class="empty-state" id="empty-state">
+              <div class="empty-icon">⏱️</div>
+              <p>No activities yet.<br>Add one to start planning your day.</p>
+            </div>
+          </div>
+
+          <!-- Time Leak -->
+          <div class="leak-box" id="leak-box" style="display:none">
+            <div class="leak-title">
+              <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#00D4FF" stroke-width="1.5"/><path d="M10 6v4l2.5 1.5" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Time Leak Detected
+            </div>
+            <p id="leak-msg"></p>
+          </div>
+
+          <!-- Breakdown -->
+          <div class="breakdown-box" id="breakdown-box" style="display:none">
+            <h3 class="breakdown-title">Where Did Your Day Go?</h3>
+            <div id="breakdown-bars"></div>
+          </div>
+        </div>
+
+      </div><!-- /planner-grid -->
+
+      <!-- Timeline Card -->
+      <div class="card timeline-card">
+        <div class="timeline-card-header">
+          <h2 class="card-title">24-Hour Timeline</h2>
+          <div class="tl-legend" id="tl-legend"></div>
+        </div>
+        <div class="tl-wrap">
+          <div class="tl-hour-labels">
+            <span>00</span><span>02</span><span>04</span><span>06</span>
+            <span>08</span><span>10</span><span>12</span><span>14</span>
+            <span>16</span><span>18</span><span>20</span><span>22</span><span>24</span>
+          </div>
+          <div class="tl-track" id="tl-track">
+            <div class="tl-empty" id="tl-empty">Add activities to see your timeline</div>
+          </div>
+          <div class="tl-schedule" id="tl-schedule"></div>
+        </div>
+      </div>
+
+      <!-- What If Card -->
+      <div class="card whatif-card">
+        <div class="whatif-head">
+          <h2 class="card-title">
+            <svg viewBox="0 0 20 20" fill="none" width="18" height="18" style="vertical-align:-2px;margin-right:6px"><circle cx="10" cy="10" r="8" stroke="#C4B5FD" stroke-width="1.5"/><path d="M10 6a2 2 0 011.7 3L10 11v1M10 14.5v.5" stroke="#C4B5FD" stroke-width="1.5" stroke-linecap="round"/></svg>
+            What If?
+          </h2>
+          <p class="whatif-sub">Simulate adding time to an activity and see the impact.</p>
+        </div>
+        <div class="whatif-controls">
+          <div class="field" style="flex:1">
+            <label class="field-label">Activity</label>
+            <select class="text-input" id="wi-select"><option value="">Select activity…</option></select>
+          </div>
+          <div class="field">
+            <label class="field-label">Extra hours</label>
+            <input class="num-input" type="number" id="wi-hours" min="0.5" max="12" step="0.5" value="1" />
+          </div>
+          <button class="btn-secondary" id="wi-btn">Simulate</button>
+        </div>
+        <div class="whatif-result" id="wi-result" style="display:none"></div>
+      </div>
+
+    </div><!-- /view-planner -->
+
+    <!-- ══════════════ COMPARE VIEW ══════════════ -->
+    <div id="view-compare" class="view">
+      <div class="card compare-card">
+        <h2 class="card-title">Ideal vs Actual</h2>
+        <p class="view-sub">Compare what you planned with what you actually did.</p>
+        <div class="compare-cols">
+          <div class="compare-col">
+            <h3 class="compare-col-title">🎯 Ideal Plan</h3>
+            <div id="ideal-list" class="compare-list"></div>
+            <button class="btn-ghost add-compare-btn" data-side="ideal">+ Add activity</button>
+          </div>
+          <div class="compare-divider"></div>
+          <div class="compare-col">
+            <h3 class="compare-col-title">📊 Actual Day</h3>
+            <div id="actual-list" class="compare-list"></div>
+            <button class="btn-ghost add-compare-btn" data-side="actual">+ Add activity</button>
+          </div>
+        </div>
+        <button class="btn-primary" id="compare-btn" style="margin-top:1.5rem">Run Comparison</button>
+        <div id="compare-result"></div>
+      </div>
+    </div>
+
+    <!-- ══════════════ WEEKLY VIEW ══════════════ -->
+    <div id="view-weekly" class="view">
+      <div class="card weekly-card">
+        <h2 class="card-title">Weekly Overview</h2>
+        <p class="view-sub">Save days from the Planner to build your weekly record.</p>
+        <div id="weekly-content"></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/data.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/clock.js"></script>
+<script src="js/activities.js"></script>
+<script src="js/timeline.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/features.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
