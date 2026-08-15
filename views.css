@@ -1,0 +1,176 @@
+.view-sub {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+/* ── Compare View ── */
+.compare-card { max-width: 760px; margin: 0 auto; }
+.compare-cols {
+  display: flex;
+  gap: 0;
+  align-items: flex-start;
+}
+.compare-col { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.compare-col-title {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-hi);
+  margin-bottom: 4px;
+}
+.compare-divider {
+  width: 1px;
+  background: var(--border);
+  align-self: stretch;
+  margin: 0 1.5rem;
+}
+.compare-list { display: flex; flex-direction: column; gap: 6px; min-height: 60px; }
+.compare-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.55rem 0.75rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  animation: popIn 0.2s ease;
+}
+.compare-item input {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text-hi);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  flex: 1;
+  min-width: 0;
+}
+.compare-item input::placeholder { color: var(--text-dim); }
+.compare-item .hrs-inp {
+  width: 50px;
+  text-align: center;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-hi);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 2px 4px;
+  outline: none;
+}
+.compare-item .del-compare {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-dim);
+  transition: color var(--trans);
+  display: flex;
+  align-items: center;
+}
+.compare-item .del-compare:hover { color: var(--rose); }
+.add-compare-btn {
+  align-self: flex-start;
+  font-size: 0.82rem;
+  color: var(--indigo-hi);
+  padding: 4px 8px;
+}
+.add-compare-btn:hover { color: var(--lavender); }
+
+/* Compare result */
+#compare-result { display: flex; flex-direction: column; gap: 8px; }
+.cr-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.7rem 1rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.86rem;
+  color: var(--text-base);
+  animation: fadeIn 0.3s ease;
+}
+.cr-row .cr-icon { font-size: 1rem; flex-shrink: 0; }
+.cr-row.over  { border-color: rgba(244,63,94,0.3); background: rgba(244,63,94,0.06); }
+.cr-row.under { border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.06); }
+.cr-row.match { border-color: rgba(0,212,255,0.2); }
+
+/* ── Weekly View ── */
+.weekly-card { max-width: 860px; margin: 0 auto; }
+.weekly-empty {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+.weekly-day {
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.weekly-day-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+.weekly-day-title {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-hi);
+}
+.weekly-day-meta { font-size: 0.78rem; color: var(--text-muted); }
+.weekly-bars { padding: 0.85rem 1rem; display: flex; flex-direction: column; gap: 6px; }
+.weekly-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.weekly-bar-label {
+  font-size: 0.78rem;
+  color: var(--text-base);
+  width: 100px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.weekly-bar-track {
+  flex: 1;
+  height: 5px;
+  background: var(--surface-3);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.weekly-bar-fill {
+  height: 100%;
+  border-radius: 100px;
+}
+.weekly-bar-dur {
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  width: 50px;
+  text-align: right;
+}
+.weekly-totals {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.weekly-totals h3 {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-hi);
+  margin-bottom: 1rem;
+}
